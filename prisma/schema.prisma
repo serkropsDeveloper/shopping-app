@@ -1,0 +1,25 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("NEW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model List {
+  id        Int       @id @default(autoincrement())
+  items     Json
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  history   History[]
+  done      Boolean   @default(false)
+}
+
+model History {
+  id        Int       @id @default(autoincrement())
+  action    String
+  listId    Int
+  timestamp DateTime  @default(now())
+  list      List      @relation(fields: [listId], references: [id])
+}
