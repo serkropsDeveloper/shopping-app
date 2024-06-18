@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "DATABASE_URL": "your_database_url_here",
+      "NEW_DATABASE_URL": "your_new_database_url_here"
+    }
+  }
+}
