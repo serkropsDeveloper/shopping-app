@@ -9,6 +9,7 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 import stylesheet from "~/tailwind.css?url";
+import { SpeedInsights } from "@vercel/speed-insights/remix";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -27,6 +28,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <SpeedInsights />
         <nav className="p-3 flex justify-center items-center gap-1 bg-slate-100">
           <Link
             to="/"
