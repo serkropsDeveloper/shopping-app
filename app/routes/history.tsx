@@ -80,7 +80,7 @@ export default function History() {
   };
 
   return (
-    <div className="w-full h-full p-4 flex flex-col justify-center items-start">
+    <div className="w-full h-fullflex flex-col justify-center items-start">
       <div className="w-full xl:w-[50%] lg:w-[60%] md:w-[70%] m-auto bg-slate-200 rounded-xl p-3 h-full flex flex-col justify-center items-center gap-3">
         <h1 className="p-3 text-cyan-500 text-3xl font-bold rounded-md">
           История покупок
