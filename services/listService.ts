@@ -53,36 +53,6 @@ export async function getLastList() {
   };
 }
 
-// Обновление состояния элемента списка
-// export async function updateItemCompleteStatus(
-//   listId: number,
-//   itemIndex: number,
-//   complete: boolean
-// ) {
-//   const list = await prisma.list.findUnique({
-//     where: { id: listId },
-//   });
-
-//   if (!list) {
-//     throw new Error("List not found");
-//   }
-
-//   const updatedItems = list.items as unknown as Item[];
-//   updatedItems[itemIndex].complete = complete;
-
-//   await prisma.list.update({
-//     where: { id: listId },
-//     data: {
-//       items: updatedItems as unknown as Prisma.JsonArray,
-//       history: {
-//         create: {
-//           action: "updated",
-//         },
-//       },
-//     },
-//   });
-// }
-
 export async function getAllLists() {
   const lists = await prisma.list.findMany({
     include: {
