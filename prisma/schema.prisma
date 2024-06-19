@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = "postgres://default:R5vYqt7JkQhO@ep-nameless-river-a2v123uy.eu-central-1.aws.neon.tech:5432/verceldb?sslmode=require"
+  url      = "postgres://default:R5vYqt7JkQhO@ep-nameless-river-a2v123uy.eu-central-1.aws.neon.tech:5432/verceldb"
 }
 
 generator client {
