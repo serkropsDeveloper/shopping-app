@@ -5,7 +5,12 @@ import {
   json,
   redirect,
 } from "@remix-run/node";
-import { useLoaderData, Outlet, useFetcher } from "@remix-run/react";
+import {
+  useLoaderData,
+  Outlet,
+  useFetcher,
+  useNavigate,
+} from "@remix-run/react";
 import { useEffect, useState } from "react";
 import { createList, getAllLists } from "services/listService";
 import Add from "~/components/Add";
@@ -67,6 +72,7 @@ export default function Index() {
   const [items, setItems] = useState<Item[]>([]);
   const [title, setTitle] = useState("");
   const fetcher = useFetcher();
+  const navigate = useNavigate();
 
   const handleAddItem = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -96,8 +102,9 @@ export default function Index() {
   useEffect(() => {
     if (fetcher.state === "idle" && fetcher.data && !fetcher.data.error) {
       setItems([]);
+      navigate("/list");
     }
-  }, [fetcher.state, fetcher.data]);
+  }, [fetcher.state, fetcher.data, navigate]);
 
   return (
     <div className="w-full xl:w-[50%] lg:w-[60%] md:w-[70%] h-full m-auto bg-slate-200 rounded-xl p-4 flex flex-col justify-center items-center border">

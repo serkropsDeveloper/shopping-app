@@ -5,6 +5,7 @@ import {
   json,
 } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
+import { useState } from "react";
 import {
   getLastList,
   updateItemCompleteStatus,
@@ -75,13 +76,11 @@ export const action: ActionFunction = async ({ request }) => {
 export default function List() {
   const { list } = useLoaderData<LoaderData>();
   const fetcher = useFetcher();
+  const [items, setItems] = useState(list ? list.items : []);
 
   if (!list) {
     return (
       <div className="w-full h-full bg-slate-100 p-4 flex flex-col justify-center items-center gap-3 border">
-        {/* <h1 className="p-3 text-cyan-500 text-2xl font-bold rounded-md">
-          Last Added List
-        </h1> */}
         <p className="p-3 text-cyan-500 text-3xl font-bold rounded-md">
           Список пуст
         </p>
@@ -90,6 +89,13 @@ export default function List() {
   }
 
   const handleCheckboxChange = (index: number, complete: boolean) => {
+    // Мгновенное обновление состояния на клиенте
+    const newItems = items.map((item, i) =>
+      i === index ? { ...item, complete } : item
+    );
+    setItems(newItems);
+
+    // Отправка запроса на сервер
     fetcher.submit(
       {
         listId: list.id.toString(),
@@ -119,10 +125,10 @@ export default function List() {
     <div className="w-full xl:w-[50%] lg:w-[60%] md:w-[70%] h-full m-auto bg-slate-200 rounded-xl p-4 flex flex-col justify-center items-center gap-3 border">
       <div className="w-full h-full flex flex-col justify-center items-center gap-3">
         <h1 className="p-3 text-cyan-500 text-3xl font-bold rounded-md">
-          Last Added List
+          Список на день
         </h1>
         <ul className="w-full flex flex-col gap-2">
-          {list.items.map((item, index) => (
+          {items.map((item, index) => (
             <li
               key={index}
               className="w-full p-2 rounded-md flex justify-between items-center hover:bg-cyan-600/50 hover:border-cyan-800 hover:cursor-pointer ease-in-out duration-500 border-2 border-cyan-600"
@@ -142,7 +148,7 @@ export default function List() {
           onClick={handleDoneClick}
           className="w-48 p-3 ease-in-out duration-500 rounded-md border-2 text-2xl text-white font-bold bg-cyan-400 hover:bg-cyan-500 border-cyan-700/60"
         >
-          Done
+          Куплено
         </button>
       </div>
     </div>
