@@ -27,11 +27,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <nav className="p-3 flex justify-center items-center gap-7 bg-slate-100">
+        <nav className="p-3 flex justify-center items-center gap-1 bg-slate-100">
           <Link
             to="/"
             prefetch="intent"
-            className={`text-2xl font-semibold p-3 rounded-xl duration-500 ease-in-out border-2 border-cyan-600 ${
+            className={`text-xl font-semibold p-2 rounded-xl duration-500 ease-in-out border-2 border-cyan-600 ${
               currentPath === "/" ? "bg-cyan-600/50" : "bg-cyan-500/30"
             }`}
           >
@@ -40,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Link
             to="/list"
             prefetch="intent"
-            className={`text-2xl font-semibold p-3 rounded-xl duration-500 ease-in-out border-2 border-cyan-600 ${
+            className={`text-xl font-semibold p-2 rounded-xl duration-500 ease-in-out border-2 border-cyan-600 ${
               currentPath === "/list" ? "bg-cyan-600/50" : "bg-cyan-500/30"
             }`}
           >
@@ -49,7 +49,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Link
             to="/history"
             prefetch="intent"
-            className={`text-2xl font-semibold p-3 rounded-xl duration-500 ease-in-out border-2 border-cyan-600 ${
+            className={`text-xl font-semibold p-2 rounded-xl duration-500 ease-in-out border-2 border-cyan-600 ${
               currentPath === "/history" ? "bg-cyan-600/50" : "bg-cyan-500/30"
             }`}
           >
